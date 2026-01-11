@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import authRoutes from "./routes/auth_routes.js";
+import blogRoutes from "./routes/blog_routes.js";
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 
@@ -10,7 +11,8 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/v1", authRoutes);
+app.use("/api/auth/v1", authRoutes);
+app.use("/api/blog/v1", blogRoutes);
 
 const startServer = async () => {
   await connectDB();
